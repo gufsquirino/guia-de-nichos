@@ -407,7 +407,7 @@ export default function GuiaDeNichos() {
     const lead = {
       data: new Date().toLocaleString("pt-BR"),
       nome, email,
-      whatsapp: `${pais.dial} ${whatsapp}`.trim(),
+      whatsapp: `${pais.dial}${whatsapp.replace(/\D/g, "")}`.trim(),
       pais: pais.name, idade,
       conhecimento_dropshipping: conhecimento, objetivo,
       genero_vida_amorosa: statusAmoroso, filhos, pets,
@@ -423,11 +423,6 @@ export default function GuiaDeNichos() {
       if (idx >= 0) { const next = [...prev]; next[idx] = lead; return next; }
       return [...prev, lead];
     });
-    // Google Sheets webhook
-    try {
-      const url = process.env.NEXT_PUBLIC_SHEETS_WEBHOOK;
-      if (url) fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(lead), mode: "no-cors" });
-    } catch(e) {}
   };
 
   const handlePhoneChange = (value) => {
@@ -556,9 +551,29 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
     setLoading(false);
   };
 
-  const finalizar = () => {
+  const finalizar = async () => {
     upsertLead({ etapa_concluida: "6 - Concluído", nome_loja: nomeLoja });
     setEtapa(6);
+    // Enviar para Google Sheets apenas ao finalizar
+    try {
+      const url = process.env.NEXT_PUBLIC_SHEETS_WEBHOOK;
+      if (url) {
+        const lead = {
+          data: new Date().toLocaleString("pt-BR"),
+          nome, email,
+          whatsapp: `${pais.dial}${whatsapp.replace(/\D/g, "")}`.trim(),
+          pais: pais.name, idade,
+          conhecimento_dropshipping: conhecimento, objetivo,
+          genero_vida_amorosa: statusAmoroso, filhos, pets,
+          exercicios_fisicos: exercicios, assuntos_interesse: interesses,
+          nichos_identificacao: nichosIdent.join(", "),
+          nicho_escolhido: selectedNiche?.nome || "",
+          nome_loja: nomeLoja,
+          etapa_concluida: "6 - Concluído",
+        };
+        fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(lead), mode: "no-cors" });
+      }
+    } catch(e) {}
   };
 
   const gerarPDF = () => {
