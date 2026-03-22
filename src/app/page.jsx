@@ -918,14 +918,14 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
                         {nicho.is_principal && <span style={{ fontSize: 10, background: "#22c55e", color: "#000", padding: "2px 8px", borderRadius: 20, fontWeight: 800 }}>⭐ RECOMENDADO</span>}
-                        <span style={{ color: "#fff", fontWeight: 700, fontSize: 15 }}>{nicho.nome}</span>
+                        <span style={{ color: "#fff", fontWeight: 700, fontSize: 16 }}>{nicho.nome}</span>
                       </div>
                       <span style={{ color: "#555", fontSize: 12, flexShrink: 0 }}>{expandedIdx === i ? "▲" : "▼"}</span>
                     </div>
                     {expandedIdx === i && (
                       <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #1a1a1a" }}>
-                        <p style={{ color: "#888", fontSize: 13, marginBottom: 8, lineHeight: 1.5 }}>{nicho.justificativa}</p>
-                        <p style={{ color: "#22c55e", fontSize: 13 }}>🛍️ <strong>Exemplo:</strong> {nicho.exemplo_produto}</p>
+                        <p style={{ color: "#bbb", fontSize: 14, marginBottom: 8, lineHeight: 1.6 }}>{nicho.justificativa}</p>
+                        <p style={{ color: "#22c55e", fontSize: 14 }}>🛍️ <strong>Exemplo:</strong> {nicho.exemplo_produto}</p>
                       </div>
                     )}
                   </div>
@@ -948,13 +948,13 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
           <div style={pad}>
             {colecoes.map((col, i) => (
               <div key={i} style={{ marginBottom: 14, background: "rgba(99,102,241,0.05)", border: "1px solid rgba(99,102,241,0.14)", borderRadius: 14, padding: "16px 18px" }}>
-                <h3 style={{ color: "#a78bfa", fontWeight: 700, fontSize: 14, marginBottom: 10 }}>{col.nome}</h3>
+                <h3 style={{ color: "#a78bfa", fontWeight: 700, fontSize: 16, marginBottom: 12 }}>{col.nome}</h3>
                 <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                   {col.produtos.map((prod, j) => (
                     <div key={j} style={{ background: "rgba(255,255,255,0.04)", borderRadius: 9, padding: "10px 14px" }}>
-                      <p style={{ color: "#e2e8f0", fontWeight: 600, fontSize: 13 }}>{prod.nome}</p>
-                      <p style={{ color: "#777", fontSize: 12, marginTop: 2, lineHeight: 1.4 }}>{prod.descricao}</p>
-                      <p style={{ color: "#818cf8", fontSize: 11, marginTop: 4 }}>💡 {prod.motivo_apelo}</p>
+                      <p style={{ color: "#fff", fontWeight: 700, fontSize: 14 }}>{prod.nome}</p>
+                      <p style={{ color: "#bbb", fontSize: 13, marginTop: 4, lineHeight: 1.5 }}>{prod.descricao}</p>
+                      <p style={{ color: "#818cf8", fontSize: 13, marginTop: 5 }}>💡 {prod.motivo_apelo}</p>
                     </div>
                   ))}
                 </div>
@@ -974,13 +974,13 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
           <div style={pad}>
             {nomesLoja.length > 0 && (
               <div style={{ marginBottom: 20 }}>
-                <p style={{ color: "#555", fontSize: 11, fontWeight: 700, marginBottom: 10, textTransform: "uppercase", letterSpacing: 0.5 }}>Sugestões da IA</p>
+                <p style={{ color: "#aaa", fontSize: 12, fontWeight: 700, marginBottom: 10, textTransform: "uppercase", letterSpacing: 0.5 }}>Sugestões da IA</p>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                   {nomesLoja.map((item, i) => (
                     <button key={i} type="button" onClick={() => { setNomeLoja(item.nome); setDominioStatus(null); }}
-                      style={{ padding: "12px 14px", borderRadius: 10, cursor: "pointer", textAlign: "left", fontFamily: "inherit", transition: "all 0.15s", border: nomeLoja === item.nome ? "1px solid #22c55e" : "1px solid #222", background: nomeLoja === item.nome ? "rgba(34,197,94,0.07)" : "rgba(255,255,255,0.03)", color: "#fff" }}>
-                      <p style={{ fontWeight: 700, fontSize: 14 }}>{item.nome}</p>
-                      <p style={{ fontSize: 11, color: "#555", marginTop: 3, lineHeight: 1.4 }}>{item.explicacao}</p>
+                      style={{ padding: "14px 16px", borderRadius: 10, cursor: "pointer", textAlign: "left", fontFamily: "inherit", transition: "all 0.15s", border: nomeLoja === item.nome ? "1.5px solid #22c55e" : "1px solid #333", background: nomeLoja === item.nome ? "rgba(34,197,94,0.1)" : "rgba(255,255,255,0.06)", color: "#fff" }}>
+                      <p style={{ fontWeight: 700, fontSize: 15, color: "#fff" }}>{item.nome}</p>
+                      <p style={{ fontSize: 13, color: "#aaa", marginTop: 4, lineHeight: 1.5 }}>{item.explicacao}</p>
                     </button>
                   ))}
                 </div>
@@ -996,19 +996,19 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {dominioStatus.pontos_positivos?.length > 0 && (
                   <div style={{ background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.15)", borderRadius: 12, padding: 14 }}>
-                    <p style={{ color: "#22c55e", fontWeight: 700, marginBottom: 8, fontSize: 13 }}>✅ Pontos Positivos</p>
-                    {dominioStatus.pontos_positivos.map((p, i) => <p key={i} style={{ color: "#888", fontSize: 13, marginBottom: 3 }}>• {p}</p>)}
+                    <p style={{ color: "#22c55e", fontWeight: 700, marginBottom: 10, fontSize: 14 }}>✅ Pontos Positivos</p>
+                    {dominioStatus.pontos_positivos.map((p, i) => <p key={i} style={{ color: "#ccc", fontSize: 14, marginBottom: 5 }}>• {p}</p>)}
                   </div>
                 )}
                 {dominioStatus.pontos_atencao?.length > 0 && (
                   <div style={{ background: "rgba(234,179,8,0.06)", border: "1px solid rgba(234,179,8,0.15)", borderRadius: 12, padding: 14 }}>
-                    <p style={{ color: "#eab308", fontWeight: 700, marginBottom: 8, fontSize: 13 }}>⚠️ Pontos de Atenção</p>
-                    {dominioStatus.pontos_atencao.map((p, i) => <p key={i} style={{ color: "#888", fontSize: 13, marginBottom: 3 }}>• {p}</p>)}
+                    <p style={{ color: "#eab308", fontWeight: 700, marginBottom: 10, fontSize: 14 }}>⚠️ Pontos de Atenção</p>
+                    {dominioStatus.pontos_atencao.map((p, i) => <p key={i} style={{ color: "#ccc", fontSize: 14, marginBottom: 5 }}>• {p}</p>)}
                   </div>
                 )}
                 {dominioStatus.conflitos?.length > 0 && (
                   <div style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)", borderRadius: 12, padding: 14 }}>
-                    <p style={{ color: "#ef4444", fontWeight: 700, marginBottom: 8, fontSize: 13 }}>🔴 Conflitos</p>
+                    <p style={{ color: "#ef4444", fontWeight: 700, marginBottom: 10, fontSize: 14 }}>🔴 Conflitos</p>
                     {dominioStatus.conflitos.map((c, i) => (
                       <div key={i} style={{ background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: "8px 12px", marginBottom: 6 }}>
                         <p style={{ color: "#ddd", fontWeight: 600, fontSize: 13 }}>{c.nome}</p>
@@ -1019,7 +1019,7 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
                 )}
                 {dominioStatus.sugestoes_alternativas?.length > 0 && (
                   <div style={{ background: "rgba(99,102,241,0.06)", border: "1px solid rgba(99,102,241,0.15)", borderRadius: 12, padding: 14 }}>
-                    <p style={{ color: "#818cf8", fontWeight: 700, marginBottom: 8, fontSize: 13 }}>💡 Alternativas</p>
+                    <p style={{ color: "#818cf8", fontWeight: 700, marginBottom: 10, fontSize: 14 }}>💡 Alternativas</p>
                     {dominioStatus.sugestoes_alternativas.map((s, i) => (
                       <button key={i} type="button" onClick={() => { setNomeLoja(s.nome); setDominioStatus(null); }}
                         style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "1px solid #222", borderRadius: 8, padding: "10px 12px", marginBottom: 6, cursor: "pointer", textAlign: "left", color: "#fff", fontFamily: "inherit" }}>
@@ -1029,7 +1029,7 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
                     ))}
                   </div>
                 )}
-                <p style={{ color: "#444", fontSize: 11, padding: "8px 12px", background: "rgba(255,255,255,0.02)", borderRadius: 8 }}>
+                <p style={{ color: "#aaa", fontSize: 13, padding: "10px 14px", background: "rgba(255,255,255,0.06)", borderRadius: 8, border: "1px solid #333" }}>
                   ⚠️ Confirme disponibilidade em sites de registro (.com.br, .com) antes de decidir.
                 </p>
                 <PrimaryBtn onClick={avancarEtapa5} disabled={loading}>
@@ -1053,16 +1053,16 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
               const cp = combo?.cor_primaria?.hex || "#4B5563";
               const cs = combo?.cor_secundaria?.hex || "#FFFFFF";
               return (
-                <div key={i} style={{ background: "rgba(255,255,255,0.02)", border: "1px solid #1a1a1a", borderRadius: 14, padding: 18, marginBottom: 14 }}>
-                  <p style={{ color: "#444", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, marginBottom: 14 }}>Opção {i + 1}</p>
+                <div key={i} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid #333", borderRadius: 14, padding: 20, marginBottom: 16 }}>
+                  <p style={{ color: "#888", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, marginBottom: 14 }}>Opção {i + 1}</p>
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 12 }}>
                     {[{ label: "Cor Principal (fundo)", cor: combo.cor_primaria, hex: cp }, { label: "Cor Secundária (texto)", cor: combo.cor_secundaria, hex: cs }].map((item) => (
                       <div key={item.label}>
-                        <p style={{ color: "#555", fontSize: 11, marginBottom: 6 }}>{item.label}</p>
+                        <p style={{ color: "#aaa", fontSize: 13, marginBottom: 8 }}>{item.label}</p>
                         <div style={{ height: 56, borderRadius: 8, background: item.hex, border: "1px solid #2a2a2a", marginBottom: 8 }} />
-                        <p style={{ color: "#ccc", fontSize: 13, fontWeight: 600 }}>{item.cor?.nome}</p>
+                        <p style={{ color: "#fff", fontSize: 15, fontWeight: 700 }}>{item.cor?.nome}</p>
                         <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 4 }}>
-                          <code style={{ background: "#111", padding: "3px 8px", borderRadius: 5, fontSize: 12, color: "#777", border: "1px solid #222" }}>{item.hex}</code>
+                          <code style={{ background: "#1a1a1a", padding: "5px 10px", borderRadius: 6, fontSize: 13, color: "#aaa", border: "1px solid #333" }}>{item.hex}</code>
                           <button type="button" onClick={() => copiar(item.hex)} style={{ background: "none", border: "none", cursor: "pointer", color: "#555", fontSize: 14 }}>📋</button>
                         </div>
                       </div>
@@ -1071,7 +1071,7 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
                   <div style={{ background: cp, borderRadius: 8, padding: "10px 16px", textAlign: "center", marginBottom: 10 }}>
                     <p style={{ color: cs, fontWeight: 600, fontSize: 14 }}>Prévia: texto sobre o fundo</p>
                   </div>
-                  <p style={{ color: "#555", fontSize: 12, lineHeight: 1.5 }}>💬 {combo.significado}</p>
+                  <p style={{ color: "#bbb", fontSize: 14, lineHeight: 1.6 }}>💬 {combo.significado}</p>
                 </div>
               );
             })}
