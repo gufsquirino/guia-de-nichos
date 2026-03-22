@@ -83,8 +83,8 @@ const exportLeadsCSV = (leads) => {
 
 const Card = ({ children, style = {} }) => (
   <div style={{
-    background: "rgba(13,13,13,0.97)", border: "1px solid rgba(255,255,255,0.08)",
-    borderRadius: 20, overflow: "hidden", boxShadow: "0 24px 64px rgba(0,0,0,0.6)", ...style
+    background: "#ffffff", border: "1px solid #e5e7eb",
+    borderRadius: 20, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.08)", ...style
   }}>
     {children}
   </div>
@@ -113,9 +113,9 @@ const GhostBtn = ({ children, onClick, style = {} }) => (
     type="button"
     onClick={onClick}
     style={{
-      border: "1px solid #2a2a2a", borderRadius: 12, padding: "14px 20px",
-      fontWeight: 600, fontSize: 14, cursor: "pointer", background: "transparent",
-      color: "#666", fontFamily: "inherit", transition: "opacity 0.2s",
+      border: "1px solid #d1d5db", borderRadius: 12, padding: "14px 20px",
+      fontWeight: 600, fontSize: 14, cursor: "pointer", background: "#fff",
+      color: "#374151", fontFamily: "inherit", transition: "opacity 0.2s",
       whiteSpace: "nowrap", ...style
     }}
   >
@@ -125,13 +125,13 @@ const GhostBtn = ({ children, onClick, style = {} }) => (
 
 const TextInput = ({ label, value, onChange, placeholder, type = "text", error }) => (
   <div style={{ marginBottom: 16 }}>
-    {label && <label style={{ display: "block", color: "#aaa", marginBottom: 6, fontSize: 13, fontWeight: 600 }}>{label}</label>}
+    {label && <label style={{ display: "block", color: "#374151", marginBottom: 6, fontSize: 14, fontWeight: 600 }}>{label}</label>}
     <input
       type={type} value={value} onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
       style={{
-        width: "100%", background: "rgba(255,255,255,0.05)", border: `1px solid ${error ? "#ef4444" : "rgba(255,255,255,0.12)"}`,
-        borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 15, outline: "none",
+        width: "100%", background: "#f9fafb", border: `1px solid ${error ? "#ef4444" : "#d1d5db"}`,
+        borderRadius: 10, padding: "12px 16px", color: "#111", fontSize: 15, outline: "none",
         boxSizing: "border-box", fontFamily: "inherit",
       }}
     />
@@ -141,13 +141,13 @@ const TextInput = ({ label, value, onChange, placeholder, type = "text", error }
 
 const TextArea = ({ label, value, onChange, placeholder }) => (
   <div style={{ marginBottom: 16 }}>
-    {label && <label style={{ display: "block", color: "#aaa", marginBottom: 6, fontSize: 13, fontWeight: 600 }}>{label}</label>}
+    {label && <label style={{ display: "block", color: "#374151", marginBottom: 6, fontSize: 14, fontWeight: 600 }}>{label}</label>}
     <textarea
       value={value} onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder} rows={3}
       style={{
-        width: "100%", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)",
-        borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 15, outline: "none",
+        width: "100%", background: "#f9fafb", border: "1px solid #d1d5db",
+        borderRadius: 10, padding: "12px 16px", color: "#111", fontSize: 15, outline: "none",
         boxSizing: "border-box", resize: "vertical", fontFamily: "inherit",
       }}
     />
@@ -156,12 +156,12 @@ const TextArea = ({ label, value, onChange, placeholder }) => (
 
 const DropSelect = ({ label, value, onChange, options }) => (
   <div style={{ marginBottom: 16 }}>
-    {label && <label style={{ display: "block", color: "#aaa", marginBottom: 6, fontSize: 13, fontWeight: 600 }}>{label}</label>}
+    {label && <label style={{ display: "block", color: "#374151", marginBottom: 6, fontSize: 14, fontWeight: 600 }}>{label}</label>}
     <select
       value={value} onChange={(e) => onChange(e.target.value)}
       style={{
-        width: "100%", background: "#111", border: "1px solid rgba(255,255,255,0.12)",
-        borderRadius: 10, padding: "12px 16px", color: value ? "#fff" : "#555",
+        width: "100%", background: "#f9fafb", border: "1px solid #d1d5db",
+        borderRadius: 10, padding: "12px 16px", color: value ? "#111" : "#9ca3af",
         fontSize: 15, outline: "none", boxSizing: "border-box", cursor: "pointer", fontFamily: "inherit",
       }}
     >
@@ -199,8 +199,8 @@ const Toast = ({ msg, type, onClose }) => {
 const StepHeader = ({ icon, title, subtitle }) => (
   <div style={{ padding: "40px 40px 8px", textAlign: "center" }}>
     <div style={{ fontSize: 48, marginBottom: 12 }}>{icon}</div>
-    <h2 style={{ color: "#fff", fontSize: 24, fontWeight: 800, marginBottom: 8 }}>{title}</h2>
-    {subtitle && <p style={{ color: "#666", fontSize: 14 }}>{subtitle}</p>}
+    <h2 style={{ color: "#111", fontSize: 26, fontWeight: 800, marginBottom: 8 }}>{title}</h2>
+    {subtitle && <p style={{ color: "#6b7280", fontSize: 15 }}>{subtitle}</p>}
   </div>
 );
 
@@ -229,19 +229,19 @@ const ProgressBar = ({ etapa }) => {
               <div style={{
                 width: 32, height: 32, borderRadius: "50%", display: "flex", alignItems: "center",
                 justifyContent: "center", fontWeight: 700, fontSize: 12, transition: "all 0.3s",
-                background: cur >= step.num ? "linear-gradient(135deg,#22c55e,#16a34a)" : "rgba(255,255,255,0.06)",
-                color: cur >= step.num ? "#000" : "#555",
+                background: cur >= step.num ? "linear-gradient(135deg,#22c55e,#16a34a)" : "#e5e7eb",
+                color: cur >= step.num ? "#000" : "#9ca3af",
                 boxShadow: cur >= step.num ? "0 0 10px rgba(34,197,94,0.35)" : "none",
                 border: cur >= step.num ? "none" : "1px solid #2a2a2a",
               }}>
                 {cur > step.num ? "✓" : step.num}
               </div>
-              <span style={{ fontSize: 9, marginTop: 4, color: cur >= step.num ? "#22c55e" : "#444", fontWeight: cur >= step.num ? 700 : 400, whiteSpace: "nowrap" }}>
+              <span style={{ fontSize: 9, marginTop: 4, color: cur >= step.num ? "#16a34a" : "#9ca3af", fontWeight: cur >= step.num ? 700 : 400, whiteSpace: "nowrap" }}>
                 {step.label}
               </span>
             </div>
             {i < steps.length - 1 && (
-              <div style={{ flex: 1, height: 2, margin: "15px 4px 0", background: cur > step.num ? "#22c55e" : "rgba(255,255,255,0.07)", transition: "all 0.3s" }} />
+              <div style={{ flex: 1, height: 2, margin: "15px 4px 0", background: cur > step.num ? "#22c55e" : "#e5e7eb", transition: "all 0.3s" }} />
             )}
           </div>
         ))}
@@ -403,7 +403,7 @@ export default function GuiaDeNichos() {
     adminTimer.current = setTimeout(() => setAdminClicks(0), 1500);
   };
 
-  const upsertLead = (extra = {}) => {
+  const upsertLead = async (extra = {}) => {
     const lead = {
       data: new Date().toLocaleString("pt-BR"),
       nome, email,
@@ -423,6 +423,18 @@ export default function GuiaDeNichos() {
       if (idx >= 0) { const next = [...prev]; next[idx] = lead; return next; }
       return [...prev, lead];
     });
+    // Enviar para Google Sheets via webhook
+    try {
+      const webhookUrl = process.env.NEXT_PUBLIC_SHEETS_WEBHOOK;
+      if (webhookUrl) {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(lead),
+          mode: "no-cors",
+        });
+      }
+    } catch (e) { /* silencioso */ }
   };
 
   const handlePhoneChange = (value) => {
@@ -773,7 +785,7 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
             <TextInput label="E-mail" type="email" value={email} onChange={setEmail} placeholder="joao@email.com" />
 
             <div style={{ marginBottom: 20 }}>
-              <label style={{ display: "block", color: "#aaa", marginBottom: 6, fontSize: 13, fontWeight: 600 }}>WhatsApp</label>
+              <label style={{ display: "block", color: "#374151", marginBottom: 6, fontSize: 14, fontWeight: 600 }}>WhatsApp</label>
               <div style={{ display: "flex", gap: 8 }}>
                 <div ref={paisRef} style={{ position: "relative", flexShrink: 0 }}>
                   <button type="button" onClick={() => setPaisOpen(!paisOpen)}
@@ -830,7 +842,7 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
           <Card>
             <StepHeader icon="📋" title="Perfil Demográfico" subtitle="Algumas informações rápidas para personalizar sua experiência" />
             <div style={pad}>
-              <p style={{ color: "#fff", fontWeight: 700, fontSize: 15, marginBottom: 12 }}>Sua idade:</p>
+              <p style={{ color: "#111", fontWeight: 700, fontSize: 15, marginBottom: 12 }}>Sua idade:</p>
               <OptionGrid cols={2} selected={idade} onSelect={setIdade}
                 options={[{value:"18-29",label:"18-29 anos"},{value:"30-39",label:"30-39 anos"},{value:"40-49",label:"40-49 anos"},{value:"50+",label:"+ de 50 anos"}]} />
 
@@ -878,9 +890,9 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
                       style={{
                         padding: "10px 16px", borderRadius: 50, fontSize: 13, fontWeight: 600,
                         cursor: "pointer", fontFamily: "inherit", transition: "all 0.15s",
-                        border: sel ? "1.5px solid #22c55e" : "1.5px solid rgba(255,255,255,0.15)",
-                        background: sel ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.07)",
-                        color: sel ? "#22c55e" : "#ccc",
+                        border: sel ? "1.5px solid #16a34a" : "1.5px solid #d1d5db",
+                        background: sel ? "rgba(34,197,94,0.1)" : "#f9fafb",
+                        color: sel ? "#16a34a" : "#374151",
                         boxShadow: sel ? "0 0 0 3px rgba(34,197,94,0.12)" : "none",
                       }}>
                       {n}
@@ -909,7 +921,7 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
                 const sel = selectedNiche === nicho;
                 return (
                   <div key={i} onClick={() => { setSelectedNiche(nicho); setExpandedIdx(expandedIdx === i ? null : i); }}
-                    style={{ border: `1px solid ${sel ? "#22c55e" : "#222"}`, borderRadius: 14, padding: "16px 20px", cursor: "pointer", transition: "all 0.15s", background: sel ? "rgba(34,197,94,0.05)" : "rgba(255,255,255,0.02)" }}>
+                    style={{ border: `1.5px solid ${sel ? "#16a34a" : "#e5e7eb"}`, borderRadius: 14, padding: "16px 20px", cursor: "pointer", transition: "all 0.15s", background: sel ? "rgba(34,197,94,0.06)" : "#fafafa" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
                         {nicho.is_principal && <span style={{ fontSize: 10, background: "#22c55e", color: "#000", padding: "2px 8px", borderRadius: 20, fontWeight: 800 }}>⭐ RECOMENDADO</span>}
@@ -919,7 +931,7 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
                     </div>
                     {expandedIdx === i && (
                       <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #1a1a1a" }}>
-                        <p style={{ color: "#888", fontSize: 13, marginBottom: 8, lineHeight: 1.5 }}>{nicho.justificativa}</p>
+                        <p style={{ color: "#4b5563", fontSize: 13, marginBottom: 8, lineHeight: 1.5 }}>{nicho.justificativa}</p>
                         <p style={{ color: "#22c55e", fontSize: 13 }}>🛍️ <strong>Exemplo:</strong> {nicho.exemplo_produto}</p>
                       </div>
                     )}
@@ -1118,25 +1130,25 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        input::placeholder, textarea::placeholder { color: #3a3a3a; }
-        select option { background: #111; color: #fff; }
+        input::placeholder, textarea::placeholder { color: #9ca3af; }
+        select option { background: #fff; color: #111; }
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
       `}</style>
 
-      <div style={{ minHeight: "100vh", background: "#080808", padding: "28px 14px 60px", fontFamily: "'Inter', sans-serif" }}>
+      <div style={{ minHeight: "100vh", background: "#f8f9fa", padding: "28px 14px 60px", fontFamily: "'Inter', sans-serif" }}>
         {toast && <Toast msg={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
         {showAdmin && <AdminPanel leads={leads} onClose={() => setShowAdmin(false)} />}
 
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 28 }}>
-          <div style={{ display: "inline-block", background: "rgba(34,197,94,0.07)", border: "1px solid rgba(34,197,94,0.15)", borderRadius: 20, padding: "5px 14px", marginBottom: 10 }}>
+          <div style={{ display: "inline-block", background: "rgba(22,163,74,0.1)", border: "1px solid rgba(22,163,74,0.3)", borderRadius: 20, padding: "5px 14px", marginBottom: 10 }}>
             <span style={{ color: "#22c55e", fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: 1.2 }}>✦ Guia de Nichos</span>
           </div>
-          <h1 onClick={handleTitleClick} style={{ color: "#fff", fontSize: 28, fontWeight: 900, letterSpacing: -0.5, cursor: "default", userSelect: "none" }}>
+          <h1 onClick={handleTitleClick} style={{ color: "#111", fontSize: 32, fontWeight: 900, letterSpacing: -0.5, cursor: "default", userSelect: "none" }}>
             Descubra seu <span style={{ color: "#22c55e" }}>Nicho Ideal</span>
           </h1>
-          <p style={{ color: "#3a3a3a", fontSize: 13, marginTop: 6 }}>Análise personalizada com inteligência artificial</p>
+          <p style={{ color: "#666", fontSize: 15, marginTop: 6 }}>Análise personalizada com inteligência artificial</p>
         </div>
 
         <ProgressBar etapa={etapa} />
@@ -1145,10 +1157,7 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
           {renderStep()}
         </div>
 
-        <div style={{ textAlign: "center", marginTop: 36, color: "#2a2a2a", fontSize: 11 }}>
-          {leads.length > 0 && <span style={{ color: "#333" }}>{leads.length} lead{leads.length > 1 ? "s" : ""} capturado{leads.length > 1 ? "s" : ""} • </span>}
-          Clique 3× no título para acessar o painel de leads
-        </div>
+
       </div>
     </>
   );
