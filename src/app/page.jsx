@@ -83,8 +83,8 @@ const exportLeadsCSV = (leads) => {
 
 const Card = ({ children, style = {} }) => (
   <div style={{
-    background: "#ffffff", border: "1px solid #e5e7eb",
-    borderRadius: 20, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.08)", ...style
+    background: "rgba(13,13,13,0.97)", border: "1px solid rgba(255,255,255,0.08)",
+    borderRadius: 20, overflow: "hidden", boxShadow: "0 24px 64px rgba(0,0,0,0.6)", ...style
   }}>
     {children}
   </div>
@@ -100,8 +100,8 @@ const PrimaryBtn = ({ children, onClick, disabled, style = {} }) => (
       fontWeight: 700, fontSize: 15, cursor: disabled ? "not-allowed" : "pointer",
       display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
       transition: "opacity 0.2s", opacity: disabled ? 0.4 : 1,
-      background: disabled ? "#e5e7eb" : "linear-gradient(135deg, #22c55e, #16a34a)",
-      color: disabled ? "#9ca3af" : "#000", fontFamily: "inherit", ...style
+      background: disabled ? "#2a2a2a" : "linear-gradient(135deg, #22c55e, #16a34a)",
+      color: disabled ? "#666" : "#000", fontFamily: "inherit", ...style
     }}
   >
     {children}
@@ -113,9 +113,9 @@ const GhostBtn = ({ children, onClick, style = {} }) => (
     type="button"
     onClick={onClick}
     style={{
-      border: "1px solid #d1d5db", borderRadius: 12, padding: "14px 20px",
-      fontWeight: 600, fontSize: 14, cursor: "pointer", background: "#fff",
-      color: "#374151", fontFamily: "inherit", transition: "opacity 0.2s",
+      border: "1px solid #2a2a2a", borderRadius: 12, padding: "14px 20px",
+      fontWeight: 600, fontSize: 14, cursor: "pointer", background: "transparent",
+      color: "#666", fontFamily: "inherit", transition: "opacity 0.2s",
       whiteSpace: "nowrap", ...style
     }}
   >
@@ -125,13 +125,13 @@ const GhostBtn = ({ children, onClick, style = {} }) => (
 
 const TextInput = ({ label, value, onChange, placeholder, type = "text", error }) => (
   <div style={{ marginBottom: 16 }}>
-    {label && <label style={{ display: "block", color: "#374151", marginBottom: 6, fontSize: 14, fontWeight: 600 }}>{label}</label>}
+    {label && <label style={{ display: "block", color: "#aaa", marginBottom: 6, fontSize: 15, fontWeight: 600 }}>{label}</label>}
     <input
       type={type} value={value} onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
       style={{
-        width: "100%", background: "#f9fafb", border: `1px solid ${error ? "#ef4444" : "#d1d5db"}`,
-        borderRadius: 10, padding: "12px 16px", color: "#111", fontSize: 15, outline: "none",
+        width: "100%", background: "rgba(255,255,255,0.05)", border: `1px solid ${error ? "#ef4444" : "rgba(255,255,255,0.12)"}`,
+        borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 15, outline: "none",
         boxSizing: "border-box", fontFamily: "inherit",
       }}
     />
@@ -141,13 +141,13 @@ const TextInput = ({ label, value, onChange, placeholder, type = "text", error }
 
 const TextArea = ({ label, value, onChange, placeholder }) => (
   <div style={{ marginBottom: 16 }}>
-    {label && <label style={{ display: "block", color: "#374151", marginBottom: 6, fontSize: 14, fontWeight: 600 }}>{label}</label>}
+    {label && <label style={{ display: "block", color: "#aaa", marginBottom: 6, fontSize: 15, fontWeight: 600 }}>{label}</label>}
     <textarea
       value={value} onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder} rows={3}
       style={{
-        width: "100%", background: "#f9fafb", border: "1px solid #d1d5db",
-        borderRadius: 10, padding: "12px 16px", color: "#111", fontSize: 15, outline: "none",
+        width: "100%", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)",
+        borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 15, outline: "none",
         boxSizing: "border-box", resize: "vertical", fontFamily: "inherit",
       }}
     />
@@ -156,12 +156,12 @@ const TextArea = ({ label, value, onChange, placeholder }) => (
 
 const DropSelect = ({ label, value, onChange, options }) => (
   <div style={{ marginBottom: 16 }}>
-    {label && <label style={{ display: "block", color: "#374151", marginBottom: 6, fontSize: 14, fontWeight: 600 }}>{label}</label>}
+    {label && <label style={{ display: "block", color: "#aaa", marginBottom: 6, fontSize: 15, fontWeight: 600 }}>{label}</label>}
     <select
       value={value} onChange={(e) => onChange(e.target.value)}
       style={{
-        width: "100%", background: "#f9fafb", border: "1px solid #d1d5db",
-        borderRadius: 10, padding: "12px 16px", color: value ? "#111" : "#9ca3af",
+        width: "100%", background: "#111", border: "1px solid rgba(255,255,255,0.12)",
+        borderRadius: 10, padding: "12px 16px", color: value ? "#fff" : "#555",
         fontSize: 15, outline: "none", boxSizing: "border-box", cursor: "pointer", fontFamily: "inherit",
       }}
     >
@@ -199,8 +199,8 @@ const Toast = ({ msg, type, onClose }) => {
 const StepHeader = ({ icon, title, subtitle }) => (
   <div style={{ padding: "40px 40px 8px", textAlign: "center" }}>
     <div style={{ fontSize: 48, marginBottom: 12 }}>{icon}</div>
-    <h2 style={{ color: "#111", fontSize: 26, fontWeight: 800, marginBottom: 8 }}>{title}</h2>
-    {subtitle && <p style={{ color: "#6b7280", fontSize: 15 }}>{subtitle}</p>}
+    <h2 style={{ color: "#fff", fontSize: 24, fontWeight: 800, marginBottom: 8 }}>{title}</h2>
+    {subtitle && <p style={{ color: "#666", fontSize: 14 }}>{subtitle}</p>}
   </div>
 );
 
@@ -229,19 +229,19 @@ const ProgressBar = ({ etapa }) => {
               <div style={{
                 width: 32, height: 32, borderRadius: "50%", display: "flex", alignItems: "center",
                 justifyContent: "center", fontWeight: 700, fontSize: 12, transition: "all 0.3s",
-                background: cur >= step.num ? "linear-gradient(135deg,#22c55e,#16a34a)" : "#e5e7eb",
-                color: cur >= step.num ? "#000" : "#9ca3af",
+                background: cur >= step.num ? "linear-gradient(135deg,#22c55e,#16a34a)" : "rgba(255,255,255,0.06)",
+                color: cur >= step.num ? "#000" : "#555",
                 boxShadow: cur >= step.num ? "0 0 10px rgba(34,197,94,0.35)" : "none",
-                border: cur >= step.num ? "none" : "1px solid #d1d5db",
+                border: cur >= step.num ? "none" : "1px solid #2a2a2a",
               }}>
                 {cur > step.num ? "✓" : step.num}
               </div>
-              <span style={{ fontSize: 9, marginTop: 4, color: cur >= step.num ? "#16a34a" : "#9ca3af", fontWeight: cur >= step.num ? 700 : 400, whiteSpace: "nowrap" }}>
+              <span style={{ fontSize: 9, marginTop: 4, color: cur >= step.num ? "#22c55e" : "#444", fontWeight: cur >= step.num ? 700 : 400, whiteSpace: "nowrap" }}>
                 {step.label}
               </span>
             </div>
             {i < steps.length - 1 && (
-              <div style={{ flex: 1, height: 2, margin: "15px 4px 0", background: cur > step.num ? "#22c55e" : "#e5e7eb", transition: "all 0.3s" }} />
+              <div style={{ flex: 1, height: 2, margin: "15px 4px 0", background: cur > step.num ? "#22c55e" : "rgba(255,255,255,0.07)", transition: "all 0.3s" }} />
             )}
           </div>
         ))}
@@ -403,7 +403,7 @@ export default function GuiaDeNichos() {
     adminTimer.current = setTimeout(() => setAdminClicks(0), 1500);
   };
 
-  const upsertLead = async (extra = {}) => {
+  const upsertLead = (extra = {}) => {
     const lead = {
       data: new Date().toLocaleString("pt-BR"),
       nome, email,
@@ -423,18 +423,11 @@ export default function GuiaDeNichos() {
       if (idx >= 0) { const next = [...prev]; next[idx] = lead; return next; }
       return [...prev, lead];
     });
-    // Enviar para Google Sheets via webhook
+    // Google Sheets webhook
     try {
-      const webhookUrl = process.env.NEXT_PUBLIC_SHEETS_WEBHOOK;
-      if (webhookUrl) {
-        await fetch(webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(lead),
-          mode: "no-cors",
-        });
-      }
-    } catch (e) { /* silencioso */ }
+      const url = process.env.NEXT_PUBLIC_SHEETS_WEBHOOK;
+      if (url) fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(lead), mode: "no-cors" });
+    } catch(e) {}
   };
 
   const handlePhoneChange = (value) => {
@@ -785,7 +778,7 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
             <TextInput label="E-mail" type="email" value={email} onChange={setEmail} placeholder="joao@email.com" />
 
             <div style={{ marginBottom: 20 }}>
-              <label style={{ display: "block", color: "#374151", marginBottom: 6, fontSize: 14, fontWeight: 600 }}>WhatsApp</label>
+              <label style={{ display: "block", color: "#aaa", marginBottom: 6, fontSize: 13, fontWeight: 600 }}>WhatsApp</label>
               <div style={{ display: "flex", gap: 8 }}>
                 <div ref={paisRef} style={{ position: "relative", flexShrink: 0 }}>
                   <button type="button" onClick={() => setPaisOpen(!paisOpen)}
@@ -827,7 +820,7 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
                   style={{
                     padding: "16px 14px", borderRadius: 12, cursor: "pointer", fontFamily: "inherit",
                     fontSize: 14, fontWeight: sel ? 700 : 500, textAlign: "center",
-                    border: sel ? "1.5px solid #16a34a" : "1px solid #d1d5db",
+                    border: sel ? "1.5px solid #22c55e" : "1px solid rgba(255,255,255,0.1)",
                     background: sel ? "rgba(34,197,94,0.1)" : "rgba(255,255,255,0.04)",
                     color: sel ? "#22c55e" : "#aaa", transition: "all 0.15s",
                     outline: "none",
@@ -842,15 +835,15 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
           <Card>
             <StepHeader icon="📋" title="Perfil Demográfico" subtitle="Algumas informações rápidas para personalizar sua experiência" />
             <div style={pad}>
-              <p style={{ color: "#111", fontWeight: 700, fontSize: 15, marginBottom: 12 }}>Sua idade:</p>
+              <p style={{ color: "#fff", fontWeight: 700, fontSize: 15, marginBottom: 12 }}>Sua idade:</p>
               <OptionGrid cols={2} selected={idade} onSelect={setIdade}
                 options={[{value:"18-29",label:"18-29 anos"},{value:"30-39",label:"30-39 anos"},{value:"40-49",label:"40-49 anos"},{value:"50+",label:"+ de 50 anos"}]} />
 
-              <p style={{ color: "#111", fontWeight: 700, fontSize: 15, marginBottom: 12 }}>Qual seu nível de conhecimento sobre dropshipping?</p>
+              <p style={{ color: "#fff", fontWeight: 700, fontSize: 15, marginBottom: 12 }}>Qual seu nível de conhecimento sobre dropshipping?</p>
               <OptionGrid cols={1} selected={conhecimento} onSelect={setConhecimento}
                 options={[{value:"Começando agora",label:"Começando agora"},{value:"Já tenho loja mas ainda não vendo",label:"Já tenho loja mas ainda não vendo"},{value:"Já vendo e quero escalar",label:"Já vendo e quero escalar"}]} />
 
-              <p style={{ color: "#111", fontWeight: 700, fontSize: 15, marginBottom: 12 }}>Qual é o seu principal objetivo?</p>
+              <p style={{ color: "#fff", fontWeight: 700, fontSize: 15, marginBottom: 12 }}>Qual é o seu principal objetivo?</p>
               <OptionGrid cols={1} selected={objetivo} onSelect={setObjetivo}
                 options={[{value:"Fazer uma Renda Extra",label:"Fazer uma Renda Extra"},{value:"Sair do CLT e me dedicar 100% para isso",label:"Sair do CLT e me dedicar 100% para isso"},{value:"Ganhar muito dinheiro e conquistar minha liberdade financeira",label:"Ganhar muito dinheiro e conquistar minha liberdade financeira"}]} />
 
@@ -890,9 +883,9 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
                       style={{
                         padding: "10px 16px", borderRadius: 50, fontSize: 13, fontWeight: 600,
                         cursor: "pointer", fontFamily: "inherit", transition: "all 0.15s",
-                        border: sel ? "1.5px solid #16a34a" : "1.5px solid #d1d5db",
-                        background: sel ? "rgba(34,197,94,0.1)" : "#f9fafb",
-                        color: sel ? "#16a34a" : "#374151",
+                        border: sel ? "1.5px solid #22c55e" : "1.5px solid rgba(255,255,255,0.15)",
+                        background: sel ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.07)",
+                        color: sel ? "#22c55e" : "#ccc",
                         boxShadow: sel ? "0 0 0 3px rgba(34,197,94,0.12)" : "none",
                       }}>
                       {n}
@@ -921,17 +914,17 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
                 const sel = selectedNiche === nicho;
                 return (
                   <div key={i} onClick={() => { setSelectedNiche(nicho); setExpandedIdx(expandedIdx === i ? null : i); }}
-                    style={{ border: `1.5px solid ${sel ? "#16a34a" : "#e5e7eb"}`, borderRadius: 14, padding: "16px 20px", cursor: "pointer", transition: "all 0.15s", background: sel ? "rgba(34,197,94,0.06)" : "#fafafa" }}>
+                    style={{ border: `1px solid ${sel ? "#22c55e" : "#222"}`, borderRadius: 14, padding: "16px 20px", cursor: "pointer", transition: "all 0.15s", background: sel ? "rgba(34,197,94,0.05)" : "rgba(255,255,255,0.02)" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
                         {nicho.is_principal && <span style={{ fontSize: 10, background: "#22c55e", color: "#000", padding: "2px 8px", borderRadius: 20, fontWeight: 800 }}>⭐ RECOMENDADO</span>}
                         <span style={{ color: "#fff", fontWeight: 700, fontSize: 15 }}>{nicho.nome}</span>
                       </div>
-                      <span style={{ color: "#9ca3af", fontSize: 12, flexShrink: 0 }}>{expandedIdx === i ? "▲" : "▼"}</span>
+                      <span style={{ color: "#555", fontSize: 12, flexShrink: 0 }}>{expandedIdx === i ? "▲" : "▼"}</span>
                     </div>
                     {expandedIdx === i && (
                       <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #1a1a1a" }}>
-                        <p style={{ color: "#4b5563", fontSize: 13, marginBottom: 8, lineHeight: 1.5 }}>{nicho.justificativa}</p>
+                        <p style={{ color: "#888", fontSize: 13, marginBottom: 8, lineHeight: 1.5 }}>{nicho.justificativa}</p>
                         <p style={{ color: "#22c55e", fontSize: 13 }}>🛍️ <strong>Exemplo:</strong> {nicho.exemplo_produto}</p>
                       </div>
                     )}
@@ -954,13 +947,13 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
           <StepHeader icon="🛍️" title="Coleções e Produtos" subtitle={selectedNiche?.nome} />
           <div style={pad}>
             {colecoes.map((col, i) => (
-              <div key={i} style={{ marginBottom: 14, background: "#f5f3ff", border: "1px solid #ddd6fe", borderRadius: 14, padding: "16px 18px" }}>
+              <div key={i} style={{ marginBottom: 14, background: "rgba(99,102,241,0.05)", border: "1px solid rgba(99,102,241,0.14)", borderRadius: 14, padding: "16px 18px" }}>
                 <h3 style={{ color: "#a78bfa", fontWeight: 700, fontSize: 14, marginBottom: 10 }}>{col.nome}</h3>
                 <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                   {col.produtos.map((prod, j) => (
-                    <div key={j} style={{ background: "#ffffff", borderRadius: 9, padding: "10px 14px", border: "1px solid #e5e7eb" }}>
-                      <p style={{ color: "#111827", fontWeight: 600, fontSize: 13 }}>{prod.nome}</p>
-                      <p style={{ color: "#6b7280", fontSize: 12, marginTop: 2, lineHeight: 1.4 }}>{prod.descricao}</p>
+                    <div key={j} style={{ background: "rgba(255,255,255,0.04)", borderRadius: 9, padding: "10px 14px" }}>
+                      <p style={{ color: "#e2e8f0", fontWeight: 600, fontSize: 13 }}>{prod.nome}</p>
+                      <p style={{ color: "#777", fontSize: 12, marginTop: 2, lineHeight: 1.4 }}>{prod.descricao}</p>
                       <p style={{ color: "#818cf8", fontSize: 11, marginTop: 4 }}>💡 {prod.motivo_apelo}</p>
                     </div>
                   ))}
@@ -985,9 +978,9 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                   {nomesLoja.map((item, i) => (
                     <button key={i} type="button" onClick={() => { setNomeLoja(item.nome); setDominioStatus(null); }}
-                      style={{ padding: "12px 14px", borderRadius: 10, cursor: "pointer", textAlign: "left", fontFamily: "inherit", transition: "all 0.15s", border: nomeLoja === item.nome ? "1.5px solid #16a34a" : "1px solid #e5e7eb", background: nomeLoja === item.nome ? "rgba(34,197,94,0.06)" : "#fafafa", color: "#fff" }}>
-                      <p style={{ fontWeight: 700, fontSize: 14, color: "#111" }}>{item.nome}</p>
-                      <p style={{ fontSize: 11, color: "#6b7280", marginTop: 3, lineHeight: 1.4 }}>{item.explicacao}</p>
+                      style={{ padding: "12px 14px", borderRadius: 10, cursor: "pointer", textAlign: "left", fontFamily: "inherit", transition: "all 0.15s", border: nomeLoja === item.nome ? "1px solid #22c55e" : "1px solid #222", background: nomeLoja === item.nome ? "rgba(34,197,94,0.07)" : "rgba(255,255,255,0.03)", color: "#fff" }}>
+                      <p style={{ fontWeight: 700, fontSize: 14 }}>{item.nome}</p>
+                      <p style={{ fontSize: 11, color: "#555", marginTop: 3, lineHeight: 1.4 }}>{item.explicacao}</p>
                     </button>
                   ))}
                 </div>
@@ -1014,29 +1007,29 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
                   </div>
                 )}
                 {dominioStatus.conflitos?.length > 0 && (
-                  <div style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 12, padding: 14 }}>
+                  <div style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)", borderRadius: 12, padding: 14 }}>
                     <p style={{ color: "#ef4444", fontWeight: 700, marginBottom: 8, fontSize: 13 }}>🔴 Conflitos</p>
                     {dominioStatus.conflitos.map((c, i) => (
                       <div key={i} style={{ background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: "8px 12px", marginBottom: 6 }}>
-                        <p style={{ color: "#111", fontWeight: 600, fontSize: 13 }}>{c.nome}</p>
-                        <p style={{ color: "#6b7280", fontSize: 11 }}>{c.tipo} — {c.descricao}</p>
+                        <p style={{ color: "#ddd", fontWeight: 600, fontSize: 13 }}>{c.nome}</p>
+                        <p style={{ color: "#666", fontSize: 11 }}>{c.tipo} — {c.descricao}</p>
                       </div>
                     ))}
                   </div>
                 )}
                 {dominioStatus.sugestoes_alternativas?.length > 0 && (
-                  <div style={{ background: "#eef2ff", border: "1px solid #c7d2fe", borderRadius: 12, padding: 14 }}>
+                  <div style={{ background: "rgba(99,102,241,0.06)", border: "1px solid rgba(99,102,241,0.15)", borderRadius: 12, padding: 14 }}>
                     <p style={{ color: "#818cf8", fontWeight: 700, marginBottom: 8, fontSize: 13 }}>💡 Alternativas</p>
                     {dominioStatus.sugestoes_alternativas.map((s, i) => (
                       <button key={i} type="button" onClick={() => { setNomeLoja(s.nome); setDominioStatus(null); }}
-                        style={{ width: "100%", background: "#f9fafb", border: "1px solid #e5e7eb", borderRadius: 8, padding: "10px 12px", marginBottom: 6, cursor: "pointer", textAlign: "left", color: "#111", fontFamily: "inherit" }}>
+                        style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "1px solid #222", borderRadius: 8, padding: "10px 12px", marginBottom: 6, cursor: "pointer", textAlign: "left", color: "#fff", fontFamily: "inherit" }}>
                         <p style={{ fontWeight: 700, fontSize: 13 }}>{s.nome}</p>
                         <p style={{ fontSize: 11, color: "#666" }}>{s.motivo}</p>
                       </button>
                     ))}
                   </div>
                 )}
-                <p style={{ color: "#6b7280", fontSize: 11, padding: "8px 12px", background: "#f9fafb", borderRadius: 8 }}>
+                <p style={{ color: "#444", fontSize: 11, padding: "8px 12px", background: "rgba(255,255,255,0.02)", borderRadius: 8 }}>
                   ⚠️ Confirme disponibilidade em sites de registro (.com.br, .com) antes de decidir.
                 </p>
                 <PrimaryBtn onClick={avancarEtapa5} disabled={loading}>
@@ -1060,16 +1053,16 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
               const cp = combo?.cor_primaria?.hex || "#4B5563";
               const cs = combo?.cor_secundaria?.hex || "#FFFFFF";
               return (
-                <div key={i} style={{ background: "#f9fafb", border: "1px solid #e5e7eb", borderRadius: 14, padding: 18, marginBottom: 14 }}>
-                  <p style={{ color: "#9ca3af", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, marginBottom: 14 }}>Opção {i + 1}</p>
+                <div key={i} style={{ background: "rgba(255,255,255,0.02)", border: "1px solid #1a1a1a", borderRadius: 14, padding: 18, marginBottom: 14 }}>
+                  <p style={{ color: "#444", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, marginBottom: 14 }}>Opção {i + 1}</p>
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 12 }}>
                     {[{ label: "Cor Principal (fundo)", cor: combo.cor_primaria, hex: cp }, { label: "Cor Secundária (texto)", cor: combo.cor_secundaria, hex: cs }].map((item) => (
                       <div key={item.label}>
                         <p style={{ color: "#555", fontSize: 11, marginBottom: 6 }}>{item.label}</p>
                         <div style={{ height: 56, borderRadius: 8, background: item.hex, border: "1px solid #2a2a2a", marginBottom: 8 }} />
-                        <p style={{ color: "#111", fontSize: 13, fontWeight: 600 }}>{item.cor?.nome}</p>
+                        <p style={{ color: "#ccc", fontSize: 13, fontWeight: 600 }}>{item.cor?.nome}</p>
                         <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 4 }}>
-                          <code style={{ background: "#f3f4f6", padding: "3px 8px", borderRadius: 5, fontSize: 12, color: "#374151", border: "1px solid #e5e7eb" }}>{item.hex}</code>
+                          <code style={{ background: "#111", padding: "3px 8px", borderRadius: 5, fontSize: 12, color: "#777", border: "1px solid #222" }}>{item.hex}</code>
                           <button type="button" onClick={() => copiar(item.hex)} style={{ background: "none", border: "none", cursor: "pointer", color: "#555", fontSize: 14 }}>📋</button>
                         </div>
                       </div>
@@ -1078,7 +1071,7 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
                   <div style={{ background: cp, borderRadius: 8, padding: "10px 16px", textAlign: "center", marginBottom: 10 }}>
                     <p style={{ color: cs, fontWeight: 600, fontSize: 14 }}>Prévia: texto sobre o fundo</p>
                   </div>
-                  <p style={{ color: "#6b7280", fontSize: 12, lineHeight: 1.5 }}>💬 {combo.significado}</p>
+                  <p style={{ color: "#555", fontSize: 12, lineHeight: 1.5 }}>💬 {combo.significado}</p>
                 </div>
               );
             })}
@@ -1130,25 +1123,25 @@ Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        input::placeholder, textarea::placeholder { color: #9ca3af; }
-        select option { background: #fff; color: #111; }
+        input::placeholder, textarea::placeholder { color: #3a3a3a; }
+        select option { background: #111; color: #fff; }
         ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
       `}</style>
 
-      <div style={{ minHeight: "100vh", background: "#f8f9fa", padding: "28px 14px 60px", fontFamily: "'Inter', sans-serif" }}>
+      <div style={{ minHeight: "100vh", background: "#080808", padding: "28px 14px 60px", fontFamily: "'Inter', sans-serif" }}>
         {toast && <Toast msg={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
         {showAdmin && <AdminPanel leads={leads} onClose={() => setShowAdmin(false)} />}
 
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 28 }}>
-          <div style={{ display: "inline-block", background: "rgba(22,163,74,0.1)", border: "1px solid rgba(22,163,74,0.3)", borderRadius: 20, padding: "5px 14px", marginBottom: 10 }}>
+          <div style={{ display: "inline-block", background: "rgba(34,197,94,0.07)", border: "1px solid rgba(34,197,94,0.15)", borderRadius: 20, padding: "5px 14px", marginBottom: 10 }}>
             <span style={{ color: "#22c55e", fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: 1.2 }}>✦ Guia de Nichos</span>
           </div>
-          <h1 onClick={handleTitleClick} style={{ color: "#111", fontSize: 32, fontWeight: 900, letterSpacing: -0.5, cursor: "default", userSelect: "none" }}>
+          <h1 onClick={handleTitleClick} style={{ color: "#fff", fontSize: 28, fontWeight: 900, letterSpacing: -0.5, cursor: "default", userSelect: "none" }}>
             Descubra seu <span style={{ color: "#22c55e" }}>Nicho Ideal</span>
           </h1>
-          <p style={{ color: "#666", fontSize: 15, marginTop: 6 }}>Análise personalizada com inteligência artificial</p>
+          <p style={{ color: "#888", fontSize: 14, marginTop: 6 }}>Análise personalizada com inteligência artificial</p>
         </div>
 
         <ProgressBar etapa={etapa} />
