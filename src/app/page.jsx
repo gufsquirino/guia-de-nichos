@@ -39,7 +39,7 @@ const formatBRPhone = (value) => {
   return `(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7)}`;
 };
 
-const callClaude = async (prompt, maxTokens = 4000) => {
+const callClaude = async (prompt, maxTokens = 1500) => {
   const response = await fetch("/api/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -506,7 +506,7 @@ Crie 5 coleções temáticas para uma loja de dropshipping. Para cada coleção,
 Responda SOMENTE com JSON válido, sem texto antes ou depois, sem markdown:
 {"colecoes":[{"nome":"Nome da Colecao","produtos":[{"nome":"Nome do Produto","descricao":"Descricao breve","motivo_apelo":"Por que vende bem"}]}]}`;
 
-      const res = await callClaude(prompt, 6000);
+      const res = await callClaude(prompt, 2500);
       setColecoes(Array.isArray(res.colecoes) ? res.colecoes : []);
       upsertLead({ etapa_concluida: "3 - Nicho", nicho_escolhido: selectedNiche.nome });
       setEtapa(3.5);
