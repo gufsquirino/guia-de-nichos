@@ -1350,6 +1350,16 @@ const gerarPaleta = (nicho, nomeLoja) => {
 };
 
 
+// Mapeamento nicho → slug da URL
+const NICHO_SLUG = {
+  "Genérico":        "generic",
+  "Casa e Cozinha":  "house",
+  "Infantil":        "children",
+  "Pet":             "pet",
+  "Eletrônico":      "eletronic",
+  "Saúde e Beleza":  "healthandbeauty",
+};
+
 // ─── UI Components ────────────────────────────────────────────────────────────
 
 const Card = ({ children, style = {} }) => (
@@ -1652,6 +1662,10 @@ export default function GuiaDeNichos() {
   // Etapa 4
   const [nomeLoja, setNomeLoja] = useState("");
   const [dominioStatus, setDominioStatus] = useState(null);
+
+  // Etapa 6 — cores selecionadas para URL
+  const [corSelecionada1, setCorSelecionada1] = useState("");
+  const [corSelecionada2, setCorSelecionada2] = useState("");
 
   // Etapa 5
   const [paletaCores, setPaletaCores] = useState(null);
@@ -2405,40 +2419,102 @@ export default function GuiaDeNichos() {
         </Card>
       );
 
-      case 6: return (
-        <Card style={{ background: "linear-gradient(135deg, rgba(5,46,22,0.97), rgba(15,52,30,0.97))", border: "2px solid rgba(34,197,94,0.3)" }}>
-          <div style={{ padding: "48px 36px 44px", textAlign: "center" }}>
-            <div style={{ fontSize: 56, marginBottom: 16 }}>🎉</div>
-            <h2 style={{ color: "#fff", fontSize: 26, fontWeight: 900, marginBottom: 10 }}>Análise Completa!</h2>
-            <p style={{ color: "#86efac", fontSize: 14, lineHeight: 1.7, maxWidth: 380, margin: "0 auto 20px" }}>
-              Seu guia está pronto. Baixe o PDF com todos os detalhes do seu nicho, nome de loja e identidade visual.
-            </p>
+      case 6: {
+        // Pré-preenche com as cores da paleta escolhida (primeira combinação)
+        const c1Default = paletaCores?.combinacoes?.[0]?.cor_primaria?.hex || "#22c55e";
+        const c2Default = paletaCores?.combinacoes?.[0]?.cor_secundaria?.hex || "#ffffff";
+        const cor1 = corSelecionada1 || c1Default;
+        const cor2 = corSelecionada2 || c2Default;
 
-            {/* Resumo */}
-            <div style={{ background: "rgba(0,0,0,0.3)", borderRadius: 12, padding: "16px 20px", marginBottom: 24, textAlign: "left" }}>
-              <p style={{ color: "#22c55e", fontWeight: 800, marginBottom: 10, fontSize: 12, textTransform: "uppercase", letterSpacing: 0.5 }}>📋 Seu Resumo</p>
-              {[["🎯 Nicho", selectedNiche?.nome], ["🏷️ Nome da loja", nomeLoja], ["🎨 Paleta de cores", "Definida ✓"], ["🛍️ Coleções", `${colecoes?.length || 0} coleções geradas`]].map(([k,v]) => (
-                <div key={k} style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(255,255,255,0.05)", paddingBottom: 6, marginBottom: 6 }}>
-                  <span style={{ color: "#6ee7b7", fontSize: 12 }}>{k}</span>
-                  <span style={{ color: "#fff", fontSize: 12, fontWeight: 700, maxWidth: "55%", textAlign: "right" }}>{v}</span>
+        const nichoSlug = NICHO_SLUG[selectedNiche?.nome] || "generic";
+        const urlParams = new URLSearchParams({
+          name: nome || "",
+          storeName: nomeLoja || "",
+          niche: nichoSlug,
+          color1: cor1,
+          color2: cor2,
+        });
+        const urlSolicitacao = `https://loja.alynnegustavo.com.br/?${urlParams.toString()}`;
+
+        return (
+          <Card style={{ background: "linear-gradient(135deg, rgba(5,46,22,0.97), rgba(15,52,30,0.97))", border: "2px solid rgba(34,197,94,0.3)" }}>
+            <div style={{ padding: "40px 36px 44px", textAlign: "center" }}>
+              <div style={{ fontSize: 52, marginBottom: 12 }}>🎉</div>
+              <h2 style={{ color: "#fff", fontSize: 26, fontWeight: 900, marginBottom: 10 }}>Análise Completa!</h2>
+              <p style={{ color: "#86efac", fontSize: 14, lineHeight: 1.7, margin: "0 auto 20px" }}>
+                Seu guia está pronto. Escolha as cores da sua loja e solicite agora!
+              </p>
+
+              {/* Resumo */}
+              <div style={{ background: "rgba(0,0,0,0.3)", borderRadius: 12, padding: "16px 20px", marginBottom: 20, textAlign: "left" }}>
+                <p style={{ color: "#22c55e", fontWeight: 800, marginBottom: 10, fontSize: 12, textTransform: "uppercase", letterSpacing: 0.5 }}>📋 Seu Resumo</p>
+                {[["🎯 Nicho", selectedNiche?.nome], ["🏷️ Nome da loja", nomeLoja], ["🎨 Paleta de cores", "Definida ✓"], ["🛍️ Coleções", `${colecoes?.length || 0} coleções geradas`]].map(([k,v]) => (
+                  <div key={k} style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(255,255,255,0.05)", paddingBottom: 6, marginBottom: 6 }}>
+                    <span style={{ color: "#6ee7b7", fontSize: 12 }}>{k}</span>
+                    <span style={{ color: "#fff", fontSize: 12, fontWeight: 700, maxWidth: "55%", textAlign: "right" }}>{v}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Seletor de cores */}
+              <div style={{ background: "rgba(0,0,0,0.25)", borderRadius: 12, padding: "16px 20px", marginBottom: 20, textAlign: "left" }}>
+                <p style={{ color: "#22c55e", fontWeight: 800, marginBottom: 14, fontSize: 12, textTransform: "uppercase", letterSpacing: 0.5 }}>🎨 Escolha as Cores da Loja</p>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                  {/* Cor 1 */}
+                  <div>
+                    <p style={{ color: "#aaa", fontSize: 12, fontWeight: 600, marginBottom: 8 }}>Cor Principal</p>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                      <div style={{ position: "relative", width: 44, height: 44, borderRadius: 10, overflow: "hidden", border: "2px solid #444", flexShrink: 0 }}>
+                        <div style={{ width: "100%", height: "100%", background: cor1 }} />
+                        <input type="color" value={cor1}
+                          onChange={(e) => setCorSelecionada1(e.target.value)}
+                          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0, cursor: "pointer" }} />
+                      </div>
+                      <div>
+                        <p style={{ color: "#fff", fontSize: 13, fontWeight: 700 }}>{cor1.toUpperCase()}</p>
+                        <p style={{ color: "#666", fontSize: 11 }}>clique para trocar</p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Cor 2 */}
+                  <div>
+                    <p style={{ color: "#aaa", fontSize: 12, fontWeight: 600, marginBottom: 8 }}>Cor Secundária</p>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                      <div style={{ position: "relative", width: 44, height: 44, borderRadius: 10, overflow: "hidden", border: "2px solid #444", flexShrink: 0 }}>
+                        <div style={{ width: "100%", height: "100%", background: cor2 }} />
+                        <input type="color" value={cor2}
+                          onChange={(e) => setCorSelecionada2(e.target.value)}
+                          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0, cursor: "pointer" }} />
+                      </div>
+                      <div>
+                        <p style={{ color: "#fff", fontSize: 13, fontWeight: 700 }}>{cor2.toUpperCase()}</p>
+                        <p style={{ color: "#666", fontSize: 11 }}>clique para trocar</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              ))}
+
+                {/* Preview */}
+                <div style={{ marginTop: 14, borderRadius: 8, padding: "12px 16px", background: cor1, textAlign: "center" }}>
+                  <p style={{ color: cor2, fontWeight: 700, fontSize: 14 }}>Prévia: {nomeLoja || "Sua Loja"}</p>
+                </div>
+              </div>
+
+              {/* Botão PDF */}
+              <button type="button" onClick={gerarPDF}
+                style={{ width: "100%", border: "none", borderRadius: 12, padding: "15px 24px", fontWeight: 800, fontSize: 15, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, background: "linear-gradient(135deg, #22c55e, #16a34a)", color: "#000", fontFamily: "inherit", marginBottom: 12, boxShadow: "0 8px 24px rgba(34,197,94,0.3)" }}>
+                ⬇ Baixar PDF Completo
+              </button>
+
+              {/* Botão Solicitar Loja */}
+              <a href={urlSolicitacao} target="_blank" rel="noopener noreferrer"
+                style={{ width: "100%", border: "2px solid #22c55e", borderRadius: 12, padding: "15px 24px", fontWeight: 800, fontSize: 15, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, background: "transparent", color: "#22c55e", fontFamily: "inherit", textDecoration: "none", boxSizing: "border-box" }}>
+                🚀 Solicitar Minha Loja
+              </a>
             </div>
-
-            {/* Botão PDF */}
-            <button type="button" onClick={gerarPDF}
-              style={{ width: "100%", border: "none", borderRadius: 12, padding: "16px 24px", fontWeight: 800, fontSize: 16, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, background: "linear-gradient(135deg, #22c55e, #16a34a)", color: "#000", fontFamily: "inherit", marginBottom: 12, boxShadow: "0 8px 24px rgba(34,197,94,0.3)" }}>
-              ⬇ Baixar PDF Completo
-            </button>
-
-            {/* Botão Solicitar Loja */}
-            <a href="https://loja.alynnegustavo.com.br/" target="_blank" rel="noopener noreferrer"
-              style={{ width: "100%", border: "2px solid #22c55e", borderRadius: 12, padding: "16px 24px", fontWeight: 800, fontSize: 16, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, background: "transparent", color: "#22c55e", fontFamily: "inherit", textDecoration: "none", boxSizing: "border-box" }}>
-              🚀 Solicitar Minha Loja
-            </a>
-          </div>
-        </Card>
-      );
+          </Card>
+        );
+      }
 
       default: return null;
     }
