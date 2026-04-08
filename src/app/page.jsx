@@ -2386,14 +2386,19 @@ export default function GuiaDeNichos() {
 
       case 5: return (
         <Card>
-          <StepHeader icon="🎨" title="Paleta de Cores" subtitle="Sugestão personalizada para o seu nicho" />
+          <StepHeader icon="🎨" title="Paleta de Cores" subtitle="Escolha uma das opções para continuar" />
           <div style={pad}>
             {(paletaCores?.combinacoes || []).map((combo, i) => {
               const cp = combo?.cor_primaria?.hex || "#4B5563";
               const cs = combo?.cor_secundaria?.hex || "#FFFFFF";
+              const isSel = corSelecionada1 === cp && corSelecionada2 === cs;
               return (
-                <div key={i} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid #333", borderRadius: 14, padding: 20, marginBottom: 16 }}>
-                  <p style={{ color: "#888", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, marginBottom: 14 }}>Opção {i + 1}</p>
+                <div key={i} style={{ background: isSel ? "rgba(34,197,94,0.07)" : "rgba(255,255,255,0.05)", border: `1.5px solid ${isSel ? "#22c55e" : "#333"}`, borderRadius: 14, padding: 20, marginBottom: 16, transition: "all 0.2s" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+                    <p style={{ color: isSel ? "#22c55e" : "#888", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1 }}>
+                      {isSel ? "✓ SELECIONADA" : `Opção ${i + 1}`}
+                    </p>
+                  </div>
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 12 }}>
                     {[{ label: "Cor Principal (fundo)", cor: combo.cor_primaria, hex: cp }, { label: "Cor Secundária (texto)", cor: combo.cor_secundaria, hex: cs }].map((item) => (
                       <div key={item.label}>
@@ -2407,24 +2412,33 @@ export default function GuiaDeNichos() {
                       </div>
                     ))}
                   </div>
-                  <div style={{ background: cp, borderRadius: 8, padding: "10px 16px", textAlign: "center", marginBottom: 10 }}>
-                    <p style={{ color: cs, fontWeight: 600, fontSize: 14 }}>Prévia: texto sobre o fundo</p>
+                  <div style={{ background: cp, borderRadius: 8, padding: "10px 16px", textAlign: "center", marginBottom: 12 }}>
+                    <p style={{ color: cs, fontWeight: 600, fontSize: 14 }}>Prévia: {nomeLoja || "Sua Loja"}</p>
                   </div>
-                  <p style={{ color: "#bbb", fontSize: 14, lineHeight: 1.6 }}>💬 {combo.significado}</p>
+                  <p style={{ color: "#bbb", fontSize: 13, lineHeight: 1.6, marginBottom: 14 }}>💬 {combo.significado}</p>
+                  <button type="button"
+                    onClick={() => { setCorSelecionada1(cp); setCorSelecionada2(cs); }}
+                    style={{
+                      width: "100%", border: isSel ? "none" : "1.5px solid #444", borderRadius: 10,
+                      padding: "12px", fontWeight: 700, fontSize: 14, cursor: "pointer",
+                      background: isSel ? "linear-gradient(135deg,#22c55e,#16a34a)" : "rgba(255,255,255,0.05)",
+                      color: isSel ? "#000" : "#aaa", fontFamily: "inherit", transition: "all 0.2s",
+                    }}>
+                    {isSel ? "✓ Paleta Escolhida" : "Escolher esta paleta"}
+                  </button>
                 </div>
               );
             })}
-            <PrimaryBtn onClick={finalizar}>Ver Resumo Final →</PrimaryBtn>
+            <PrimaryBtn onClick={finalizar} disabled={!corSelecionada1 || !corSelecionada2}>
+              {!corSelecionada1 ? "Escolha uma paleta para continuar" : "Ver Resumo Final →"}
+            </PrimaryBtn>
           </div>
         </Card>
       );
 
       case 6: {
-        // Pré-preenche com as cores da paleta escolhida (primeira combinação)
-        const c1Default = paletaCores?.combinacoes?.[0]?.cor_primaria?.hex || "#22c55e";
-        const c2Default = paletaCores?.combinacoes?.[0]?.cor_secundaria?.hex || "#ffffff";
-        const cor1 = corSelecionada1 || c1Default;
-        const cor2 = corSelecionada2 || c2Default;
+        const cor1 = corSelecionada1;
+        const cor2 = corSelecionada2;
 
         const nichoSlug = NICHO_SLUG[selectedNiche?.nome] || "generic";
         const urlParams = new URLSearchParams({
@@ -2448,56 +2462,12 @@ export default function GuiaDeNichos() {
               {/* Resumo */}
               <div style={{ background: "rgba(0,0,0,0.3)", borderRadius: 12, padding: "16px 20px", marginBottom: 20, textAlign: "left" }}>
                 <p style={{ color: "#22c55e", fontWeight: 800, marginBottom: 10, fontSize: 12, textTransform: "uppercase", letterSpacing: 0.5 }}>📋 Seu Resumo</p>
-                {[["🎯 Nicho", selectedNiche?.nome], ["🏷️ Nome da loja", nomeLoja], ["🎨 Paleta de cores", "Definida ✓"], ["🛍️ Coleções", `${colecoes?.length || 0} coleções geradas`]].map(([k,v]) => (
+                {[["🎯 Nicho", selectedNiche?.nome], ["🏷️ Nome da loja", nomeLoja], ["🎨 Cores", `${cor1} + ${cor2}`], ["🛍️ Coleções", `${colecoes?.length || 0} coleções geradas`]].map(([k,v]) => (
                   <div key={k} style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(255,255,255,0.05)", paddingBottom: 6, marginBottom: 6 }}>
                     <span style={{ color: "#6ee7b7", fontSize: 12 }}>{k}</span>
                     <span style={{ color: "#fff", fontSize: 12, fontWeight: 700, maxWidth: "55%", textAlign: "right" }}>{v}</span>
                   </div>
                 ))}
-              </div>
-
-              {/* Seletor de cores */}
-              <div style={{ background: "rgba(0,0,0,0.25)", borderRadius: 12, padding: "16px 20px", marginBottom: 20, textAlign: "left" }}>
-                <p style={{ color: "#22c55e", fontWeight: 800, marginBottom: 14, fontSize: 12, textTransform: "uppercase", letterSpacing: 0.5 }}>🎨 Escolha as Cores da Loja</p>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-                  {/* Cor 1 */}
-                  <div>
-                    <p style={{ color: "#aaa", fontSize: 12, fontWeight: 600, marginBottom: 8 }}>Cor Principal</p>
-                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                      <div style={{ position: "relative", width: 44, height: 44, borderRadius: 10, overflow: "hidden", border: "2px solid #444", flexShrink: 0 }}>
-                        <div style={{ width: "100%", height: "100%", background: cor1 }} />
-                        <input type="color" value={cor1}
-                          onChange={(e) => setCorSelecionada1(e.target.value)}
-                          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0, cursor: "pointer" }} />
-                      </div>
-                      <div>
-                        <p style={{ color: "#fff", fontSize: 13, fontWeight: 700 }}>{cor1.toUpperCase()}</p>
-                        <p style={{ color: "#666", fontSize: 11 }}>clique para trocar</p>
-                      </div>
-                    </div>
-                  </div>
-                  {/* Cor 2 */}
-                  <div>
-                    <p style={{ color: "#aaa", fontSize: 12, fontWeight: 600, marginBottom: 8 }}>Cor Secundária</p>
-                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                      <div style={{ position: "relative", width: 44, height: 44, borderRadius: 10, overflow: "hidden", border: "2px solid #444", flexShrink: 0 }}>
-                        <div style={{ width: "100%", height: "100%", background: cor2 }} />
-                        <input type="color" value={cor2}
-                          onChange={(e) => setCorSelecionada2(e.target.value)}
-                          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0, cursor: "pointer" }} />
-                      </div>
-                      <div>
-                        <p style={{ color: "#fff", fontSize: 13, fontWeight: 700 }}>{cor2.toUpperCase()}</p>
-                        <p style={{ color: "#666", fontSize: 11 }}>clique para trocar</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Preview */}
-                <div style={{ marginTop: 14, borderRadius: 8, padding: "12px 16px", background: cor1, textAlign: "center" }}>
-                  <p style={{ color: cor2, fontWeight: 700, fontSize: 14 }}>Prévia: {nomeLoja || "Sua Loja"}</p>
-                </div>
               </div>
 
               {/* Botão PDF */}
