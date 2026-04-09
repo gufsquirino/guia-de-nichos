@@ -2448,7 +2448,7 @@ export default function GuiaDeNichos() {
           color1: cor1,
           color2: cor2,
         });
-        const urlSolicitacao = `https://loja.alynnegustavo.com.br/?${urlParams.toString()}`;
+        const urlSolicitacao = `https://loja.alynnegustavo.com.br/create-store/shopify?${urlParams.toString()}`;
 
         return (
           <Card style={{ background: "linear-gradient(135deg, rgba(5,46,22,0.97), rgba(15,52,30,0.97))", border: "2px solid rgba(34,197,94,0.3)" }}>
