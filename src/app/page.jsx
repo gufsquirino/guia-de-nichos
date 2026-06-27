@@ -1653,6 +1653,7 @@ export default function GuiaDeNichos() {
   // Etapa 3
   const [nichos, setNichos] = useState([]);
   const [nomesLoja, setNomesLoja] = useState([]);
+  const [loadingNomes, setLoadingNomes] = useState(false);
   const [selectedNiche, setSelectedNiche] = useState(null);
   const [expandedIdx, setExpandedIdx] = useState(null);
 
@@ -1756,8 +1757,32 @@ export default function GuiaDeNichos() {
     // Pré-carrega nomes do nicho principal (sem IA)
     const nichoTop = resultado[0]?.nome || "Genérico";
     setNomesLoja(sugerirNomes(nichoTop));
+    gerarNomesIA(nichoTop); // dispara em background
     upsertLead({ etapa_concluida: "2 - Perfil" });
     setEtapa(3);
+  };
+
+
+  // Gera nomes via IA em background — não bloqueia navegação
+  const gerarNomesIA = async (nicho) => {
+    setLoadingNomes(true);
+    // Já carrega base local imediatamente como fallback
+    setNomesLoja(sugerirNomes(nicho));
+    try {
+      const prompt = `Crie 10 nomes de loja de dropshipping para o nicho "${nicho}".
+Regras: curtos (1-2 palavras), memoráveis, parecem marca profissional, sem "shop/store/brasil/top/mega".
+Misture: 5 nomes inventados (sonoridade forte) + 5 combinações criativas.
+Retorne APENAS JSON válido:
+{"nomes":[{"nome":"...","explicacao":"..."}]}`;
+
+      const res = await callClaude(prompt, 800);
+      if (Array.isArray(res.nomes) && res.nomes.length > 0) {
+        setNomesLoja(res.nomes.map(n => ({ nome: n.nome, explicacao: n.explicacao })));
+      }
+    } catch (err) {
+      // Silencioso — fallback da base local já está ativo
+    }
+    setLoadingNomes(false);
   };
 
   const avancarEtapa3 = () => {
@@ -2255,7 +2280,7 @@ export default function GuiaDeNichos() {
               {nichos.map((nicho, i) => {
                 const sel = selectedNiche === nicho;
                 return (
-                  <div key={i} onClick={() => { setSelectedNiche(nicho); setExpandedIdx(expandedIdx === i ? null : i); setNomesLoja(sugerirNomes(nicho.nome)); }}
+                  <div key={i} onClick={() => { setSelectedNiche(nicho); setExpandedIdx(expandedIdx === i ? null : i); setNomesLoja(sugerirNomes(nicho.nome)); gerarNomesIA(nicho.nome); }}
                     style={{ border: `1px solid ${sel ? "#22c55e" : "#222"}`, borderRadius: 14, padding: "16px 20px", cursor: "pointer", transition: "all 0.15s", background: sel ? "rgba(34,197,94,0.05)" : "rgba(255,255,255,0.02)" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
@@ -2316,7 +2341,15 @@ export default function GuiaDeNichos() {
           <div style={pad}>
             {nomesLoja.length > 0 && (
               <div style={{ marginBottom: 20 }}>
-                <p style={{ color: "#aaa", fontSize: 12, fontWeight: 700, marginBottom: 10, textTransform: "uppercase", letterSpacing: 0.5 }}>Sugestões da IA</p>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                  <p style={{ color: "#aaa", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: 0.5 }}>Sugestões</p>
+                  {loadingNomes && (
+                    <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                      <div style={{ width: 8, height: 8, borderRadius: "50%", border: "1.5px solid rgba(34,197,94,0.3)", borderTopColor: "#22c55e", animation: "spin 0.8s linear infinite" }} />
+                      <span style={{ color: "#666", fontSize: 10 }}>gerando mais opções...</span>
+                    </div>
+                  )}
+                </div>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                   {nomesLoja.map((item, i) => (
                     <button key={i} type="button" onClick={() => { setNomeLoja(item.nome); setDominioStatus(null); }}
