@@ -55,54 +55,71 @@ const NICHO_PARA_PRINCIPAL = {
 
 // ─── Base de Nomes de Loja ────────────────────────────────────────────────────
 const NOMES_BASE = {
+ {
   "Genérico": [
-    "Velari","Nexora","Lumiva","Krath","Zyntex","Bravio","Fluxe","Orbia","Trevo","Quria",
-    "Mavex","Solari","Driva","Praxis","Nuvelo","Veltrix","Zenvy","Orvion","Lummix","Vantix",
-    "Zorix","Elora Shop","Bravon","Novara","Trivon","Axion Store","Vexon","Omnix","Zafira Shop",
-    "Valora","Xentra","Lunex","Evora Market","Klyra","Verdan","Lumera","Zorin","Tavira","Monvix",
-    "Elvera","Clyra","Ravion","Norix","Selkar","Vantara","Ornix","Delvora","Zyraen","Nexval",
-    "Alvion","Corvix","Livara","Brenza","Omvera",
+    "Velari", "Nexora", "Lumiva", "Krath", "Zyntex", "Bravio", "Fluxe", "Orbia", "Trevo", "Quria",
+    "Mavex", "Solari", "Driva", "Praxis", "Nuvelo", "Veltrix", "Zenvy", "Orvion", "Lummix", "Vantix",
+    "Zorix", "Elora Shop", "Bravon", "Novara", "Trivon", "Axion Store", "Vexon", "Omnix", "Zafira Shop",
+    "Valora", "Xentra", "Lunex", "Evora Market", "Klyra", "Verdan", "Lumera", "Zorin", "Tavira", "Monvix",
+    "Elvera", "Clyra", "Ravion", "Norix", "Selkar", "Vantara", "Ornix", "Delvora", "Zyraen", "Nexval",
+    "Alvion", "Corvix", "Livara", "Brenza", "Omvera", "Zyllion", "Oritá", "Vantaris", "Kuantis", "Allurix",
+    "Mercarix", "Trendfy", "OmniaShop", "Zallion", "Volari", "Avenix", "Inovari", "Centrivo", "PlenaVera",
+    "Nuvia", "Kredenz", "Zupto", "Luzzia", "Mercattoz", "Vistto"
   ],
   "Casa e Cozinha": [
-    "NordenCasa","Casaviva","Vivlar","Domicio","Aconchego","Arrumar","Casart","Lereno","Ninho",
-    "Habitat","Organizo","Morada","Conforto","Larium","Casarão","Pracasa","Vivenzo","Dominus",
-    "Arredo","Ornare","CasaViva","Larix","CozyHaus","Domora","CasaBella Store","Vivenda Shop",
-    "Homefy Brasil","Casa Nobre","UrbanLar","Casa Lumi","Lar Essence","Domus Store","Casa Primeira",
-    "VivaCasa Store","CasaZen","Habitare","Domari","Almare","Vivaro","Serena Casa","Nivara Home",
-    "Casavon","Morada Viva","Brisara","Ateliar","Dovika Home","Harmoni Lar","Levora Casa",
-    "Ornama","Essenza Home","Casalume","Belmor",
+    "NordenCasa", "Casaviva", "Vivlar", "Domicio", "Aconchego", "Arrumar", "Casart", "Lereno", "Ninho",
+    "Habitat", "Organizo", "Morada", "Conforto", "Larium", "Casarão", "Pracasa", "Vivenzo", "Dominus",
+    "Arredo", "Ornare", "CasaViva", "Larix", "CozyHaus", "Domora", "CasaBella Store", "Vivenda Shop",
+    "Homefy Brasil", "Casa Nobre", "UrbanLar", "Casa Lumi", "Lar Essence", "Domus Store", "Casa Primeira",
+    "VivaCasa Store", "CasaZen", "Habitare", "Domari", "Almare", "Vivaro", "Serena Casa", "Nivara Home",
+    "Casavon", "Morada Viva", "Brisara", "Ateliar", "Dovika Home", "Harmoni Lar", "Levora Casa",
+    "Ornama", "Essenza Home", "Casalume", "Belmor", "Lariz", "Casallia", "Domusio", "TetoMeu", "Decoralli",
+    "HabiLar", "Casareto", "LarBello", "VilaTeto", "CasaLeve", "CantoDoma", "TetoVivo", "Larmoa", "Cantoa",
+    "AcolheLar", "CucinaLar", "Mobiliaris", "PontoLar", "DecoraZen", "CantoNobre"
   ],
   "Infantil": [
-    "Mimmo","Pequenus","Broto","Crescer","Infantio","Nininho","Fofolete","Pimpolho","Crescendo",
-    "Mimos","Infantia","MiniMundo","BabyNest","MiniVille","Bebê Encanto","TinyJoy","Mundo do Bebê",
-    "MiniLove Store","BabyLume","Doce Infância","Kidora","Pequeno Reino","BabyAura","Encanto Kids",
-    "MiniDreams","Bebê Feliz Store","Lunini","Mimora","Ninaro","Bellupi","Doce Ninho","Pequenna",
-    "Nuvini","Minora","Bambeli","Encanti","Meluki","Pipori","Ninara","Tutiê","Fabulim","Leleva",
+    "Mimmo", "Pequenus", "Broto", "Crescer", "Infantio", "Nininho", "Fofolete", "Pimpolho", "Crescendo",
+    "Mimos", "Infantia", "MiniMundo", "BabyNest", "MiniVille", "Bebê Encanto", "TinyJoy", "Mundo do Bebê",
+    "MiniLove Store", "BabyLume", "Doce Infância", "Kidora", "Pequeno Reino", "BabyAura", "Encanto Kids",
+    "MiniDreams", "Bebê Feliz Store", "Lunini", "Mimora", "Ninaro", "Bellupi", "Doce Ninho", "Pequenna",
+    "Nuvini", "Minora", "Bambeli", "Encanti", "Meluki", "Pipori", "Ninara", "Tutiê", "Fabulim", "Leleva",
+    "Pikuchos", "Ninoca", "Pikoli", "Bebezari", "Alegriá", "Tiquim", "BrincaLá", "TocaBaby", "Pinguinho",
+    "Colorê", "BailaBaby", "Jujubinhas", "Pipoquinha", "MiniCéu", "Tiquinhos", "Cirandinha", "Pirulitando",
+    "Nanar", "BebêBrinca", "AlgodãoDoce Kids"
   ],
   "Pet": [
-    "Patinhas","Focinhos","Peludos","Latidos","Auau","Miado","Petizo","Bichano","Petvida",
-    "Zoomart","Petcare","Focinho","Animais","PetVibe","MundoPet","PetLovers Shop","AmigoPet",
-    "PetEssence","Patinhas Store","PetClub Brasil","PetAura","Universo Pet","PetJoy","PetPrime",
-    "Dog & Cat Store","PetVille","PetZen","MeuPet Shop","PetHouse","Patutti","Zorpet","Bichara",
-    "Petuni","Auvri","Mivika","Pattly","Rabito","Focara","Laturi Pet","Bichito","Cãolume",
-    "Petlune","Miocca","Uivara","Patavie",
+    "Patinhas", "Focinhos", "Peludos", "Latidos", "Auau", "Miado", "Petizo", "Bichano", "Petvida",
+    "Zoomart", "Petcare", "Focinho", "Animais", "PetVibe", "MundoPet", "PetLovers Shop", "AmigoPet",
+    "PetEssence", "Patinhas Store", "PetClub Brasil", "PetAura", "Universo Pet", "PetJoy", "PetPrime",
+    "Dog & Cat Store", "PetVille", "PetZen", "MeuPet Shop", "PetHouse", "Patutti", "Zorpet", "Bichara",
+    "Petuni", "Auvri", "Mivika", "Pattly", "Rabito", "Focara", "Laturi Pet", "Bichito", "Cãolume",
+    "Petlune", "Miocca", "Uivara", "Patavie", "Patoca", "AuMiau Shop", "Focinhari", "Bicholi", "PetLino",
+    "Ronrorá", "FocinhoFeliz", "AuMigo Store", "TocaPet", "Cãozito", "BichoZen", "FeraMansa", "PetZoi",
+    "Miaudog", "PetLúdico", "PeloMacio", "PatasECia", "PetMimo", "RaboAbanando", "Gatito"
   ],
   "Eletrônico": [
-    "Techvibe","Gadgetix","Pixelmart","Voltex","Digitalix","Techzone","Neontech","Bytemart",
-    "Plugado","Conecta","Techflow","Gridtech","Nextech","Digistore","Techfy","NexTech Store",
-    "TechZone Brasil","Digital Hub","Smartix","TechNova","Eletronix","FutureTech","TechPrime",
-    "InovaTech Store","TechWave","GearUp Store","Voltix","HyperTech","TechCore","MaxTech",
-    "Vortek","Nexvolt","Cytron","Voltara","Zentryx","Tekaro","Lumitek","Axtron","Novatek",
-    "Trionyx","Veltek","Kronix","Zetron","Omnitek","Valtryx","Synkar",
+    "Techvibe", "Gadgetix", "Pixelmart", "Voltex", "Digitalix", "Techzone", "Neontech", "Bytemart",
+    "Plugado", "Conecta", "Techflow", "Gridtech", "Nextech", "Digistore", "Techfy", "NexTech Store",
+    "TechZone Brasil", "Digital Hub", "Smartix", "TechNova", "Eletronix", "FutureTech", "TechPrime",
+    "InovaTech Store", "TechWave", "GearUp Store", "Voltix", "HyperTech", "TechCore", "MaxTech",
+    "Vortek", "Nexvolt", "Cytron", "Voltara", "Zentryx", "Tekaro", "Lumitek", "Axtron", "Novatek",
+    "Trionyx", "Veltek", "Kronix", "Zetron", "Omnitek", "Valtryx", "Synkar", "Teksys", "Voltter",
+    "Clickonix", "EletroNex", "Gadgetaria", "Conexta", "EletroSync", "CyberNuvem", "ByteBrasil",
+    "TechLíder", "ClickMestre", "SmartVibe", "TecnoMais", "Futurix", "InovaByte", "ConexãoX",
+    "EletroFácil", "EletroZ", "CargaMáxima", "TechGuia"
   ],
   "Saúde e Beleza": [
-    "Glowup","Radiante","Brilhar","Vivabem","Saudare","Belezura","Florescer","Renovar","Vitalix",
-    "Pureza","Essenzia","Naturalis","Harmonia","Equilibra","Biozen","Vitalife","Serenare","Luminare",
-    "Belleza Store","Aura Beauty","VivaSkin","GlowUp Store","Essence Beauty","DermaLux","Beautyfy",
-    "Pele & Vida","SkinAura","Beauty Prime","Glow Essence","VitaBella","SkinLab Store","Pure Beauty",
-    "Lumina Beauty","BelleAura","Luméa","Belvra","Vitaria","Dermeva","Alunna Beauty","Serenitá",
-    "Vivelle","Aurena","Belthéa","Luminé","Ravela","Dermora","Celinea","Velune","Pureva",
-  ],
+    "Glowup", "Radiante", "Brilhar", "Vivabem", "Saudare", "Belezura", "Florescer", "Renovar", "Vitalix",
+    "Pureza", "Essenzia", "Naturalis", "Harmonia", "Equilibra", "Biozen", "Vitalife", "Serenare", "Luminare",
+    "Belleza Store", "Aura Beauty", "VivaSkin", "GlowUp Store", "Essence Beauty", "DermaLux", "Beautyfy",
+    "Pele & Vida", "SkinAura", "Beauty Prime", "Glow Essence", "VitaBella", "SkinLab Store", "Pure Beauty",
+    "Lumina Beauty", "BelleAura", "Luméa", "Belvra", "Vitaria", "Dermeva", "Alunna Beauty", "Serenitá",
+    "Vivelle", "Aurena", "Belthéa", "Luminé", "Ravela", "Dermora", "Celinea", "Velune", "Pureva", "Belavie",
+    "Dermaluz", "Vitaliá", "Nutribel", "Lumiskin", "Auriá", "PeleSerena", "BelaVita", "EssênciaPura",
+    "DivaGlow", "FaceBela", "ZenBeleza", "AuraBela", "BioLuz", "RevivaBeleza", "NutriPele", "FlorDaPele Shop",
+    "PuroBrilho", "CuidadoReal", "EstéticaZen"
+  ]
+}
 };
 
 const sugerirNomes = (nicho) => {
