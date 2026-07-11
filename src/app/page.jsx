@@ -2547,11 +2547,7 @@ Retorne APENAS JSON válido:
                 ⬇ Baixar PDF Completo
               </button>
 
-              {/* Botão Solicitar Loja */}
-              <a href={urlSolicitacao} target="_blank" rel="noopener noreferrer"
-                style={{ width: "100%", border: "2px solid #22c55e", borderRadius: 12, padding: "15px 24px", fontWeight: 800, fontSize: 15, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, background: "transparent", color: "#22c55e", fontFamily: "inherit", textDecoration: "none", boxSizing: "border-box" }}>
-                🚀 Solicitar Minha Loja
-              </a>
+
             </div>
           </Card>
         );
